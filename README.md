@@ -1,1 +1,1 @@
-# Embodied-AI-Test
+Simple node js application to read volume input and generate responsive visual

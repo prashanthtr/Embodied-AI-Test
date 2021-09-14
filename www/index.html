@@ -1,0 +1,146 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/appstyle.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+    </script>
+
+    <script type="text/javascript"
+    src="https://d3js.org/d3.v3.min.js"> </script>
+
+    <script type="module" src="main.js"></script>
+
+    <script>
+      function updateText(idval){
+      console.log(idval)
+      idval[1].innerText = idval[0];
+      }
+    </script>
+
+    <title> AI musician</title>
+  </head>
+
+  <body>
+    <header>
+      <!-- Drum-trance : A system for automating drum transitions -->
+          Press s to start <br>
+          Press r to stop
+      <br>
+    </header>
+
+    <nav>
+    </nav>
+
+    <div class="mainDiv" id="mapdiv">
+
+      <div id="instructions" class="instructions">
+      </div>
+
+      <div id="performance" class="performanceDiv" >
+
+        <canvas id="meter" width="500" height="100" style="background:black"></canvas>
+
+      </div>
+
+      <div class="perfControls">
+
+        <div class="pading">
+        
+            <label class="flex-col-item-large"> <b> <u> Music controls </b> </u> </label>
+
+            <br>
+
+            <label class="flex-col-item"> Tempo </label>
+
+            <input type="range" min="30" max="120" step="5"
+                   value="60" id="tempo"
+                   data-show-value="true" class="flex-col-ai-item"
+                   oninput="updateText([this.value, tempoval])"> </input>
+
+            <label id="tempoval" class="flex-col-item" > 60 </label>
+            <br>
+            <label class="flex-col-item"> Met Vol </label>
+
+            <input type="range" min="0" max="1" step="0.1"
+                   value="0.5" id="metvolume"
+                   data-show-value="true" class="flex-col-ai-item"
+                   oninput="updateText([this.value, metvol])"
+                   >  </input>
+
+            <label id="metvol" class="flex-col-item" >  0.5 </label>
+
+          </div>
+
+          <div class="pading"> 
+
+            <label class="flex-col-item-large"> <b> <u> AI controls </b> </u> </label>
+            <br>
+
+            <label class="flex-col-item"> Temperature (Controls randomness) </label>
+            <br>
+            <input type="range" min="0" max="1" step="0.05"
+                   value="0.5"
+                   id="temperature" data-show-value="true"
+                   class="flex-col-ai-item"
+                   oninput="updateText([this.value, densitylabel])"> </input>
+
+            <label id="densitylabel" class="flex-col-item"> 0.5  </label>
+            
+            <br>
+
+
+          </div>
+
+          <div class="pading">
+        
+              <label class="flex-col-item-large"> <b> <u> JSON data </b> </u> </label>
+              <br>        
+              <textarea id="rhythmin" name="w3review" rows="5" cols="50">
+              [[ 64, 0, 0 ], [ 64, 0, 0 ], [ 64, 0, 0 ], [ 64, 0, 0 ], 
+                [ 64, 0, 0 ],   [ 64, 0, 0 ], [ 64, 0, 0 ], [ 64, 0, 0 ], 
+                  [ 64, 0, 0 ],   [ 64, 0, 0 ], [ 64, 0, 0 ],   [ 64, 0, 0 ], 
+                    [ 64, 0, 0 ], [ 64, 0, 0 ], [ 64, 0, 0 ],   [ 64, 0, 0 ]]
+              </textarea>
+              <br>
+              <button id="loadjson"> Load json </button>
+              <br>  <br>
+
+          </div>
+
+
+      <div>
+
+  </div>
+
+
+<!--     <div id="instrument" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4> Select input </h4>
+        <select name="Input" id="input">
+          <option value="microphone" default> Microphone </option>
+          <option value="keyboard"> Keyboard </option>
+          <option value="midi" default> Midi USB </option>
+          <option value="osc"> Midi OSC </option>
+        </select>
+        <br>
+        <input type="button" id="confirmInput" value="ok">  </input>
+        <p id="inputText"> </p>
+      </div>
+    </div> -->
+
+
+  </body>
+
+</html>
